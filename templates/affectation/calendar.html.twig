@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calendrier des Affectations{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Calendrier des Affectations</h1>
+        <div id="calendar"></div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: {{ affectations|raw }},
+                editable: true,
+                eventDrop: function(info) {
+                    const event = info.event;
+                    const newStartDate = event.start.toISOString().split('T')[0];
+                    fetch(`/affectation/${event.id}/update-date`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ date: event.start.toISOString().split('T')[0] }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            console.log('Date mise à jour avec succès');
+                        } else {
+                            console.error('Erreur lors de la mise à jour de la date');
+                        }
+                    })
+                    .catch(error => console.error('Erreur:', error));
+                },
+            });
+            calendar.render();
+        });
+    </script>
+{% endblock %}

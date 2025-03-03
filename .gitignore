@@ -1,25 +1,49 @@
-
-###> symfony/framework-bundle ###
+# Symfony
+/.env
 /.env.local
-/.env.local.php
 /.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
 /var/
 /vendor/
-###< symfony/framework-bundle ###
+/node_modules/
 
-###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
-###< phpunit/phpunit ###
-
-###> symfony/phpunit-bridge ###
-.phpunit.result.cache
-/phpunit.xml
-###< symfony/phpunit-bridge ###
-
-###> symfony/asset-mapper ###
+/public/bundles/
 /public/assets/
-/assets/vendor/
-###< symfony/asset-mapper ###
+
+/composer.phar
+/composer.lock
+/symfony.lock
+/.phpunit.result.cache
+
+# IDEs and editors
+/.idea/
+/.vscode/
+/*.swp
+
+# Logs
+/var/log/
+/var/cache/
+
+# Symfony's dotenv files
+/.env.test
+/.env.dev
+
+# PHPUnit
+/phpunit.xml.dist
+
+# Composer's vendor directory
+/vendor/
+
+# Webpack
+/node_modules/
+/public/build/
+
+# npm / yarn
+/package-lock.json
+/package.json
+
+# Composer
+/composer.lock
+
+# Docker
+/docker-compose.override.yml
+/docker-compose.yml

@@ -18,6 +18,10 @@ class Affectation
     #[ORM\JoinColumn(nullable: false)]
     private ?Chantier $chantier = null;
 
+    #[ORM\ManyToOne(targetEntity: Employe::class)] 
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Employe $employe = null; 
+
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_affectation_debut = null;
 
@@ -37,6 +41,18 @@ class Affectation
     public function setChantier(?Chantier $chantier): self
     {
         $this->chantier = $chantier;
+
+        return $this;
+    }
+
+    public function getEmploye(): ?Employe  
+    {
+        return $this->employe;
+    }
+
+    public function setEmploye(?Employe $employe): self 
+    {
+        $this->employe = $employe;
 
         return $this;
     }

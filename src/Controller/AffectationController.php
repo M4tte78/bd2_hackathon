@@ -30,8 +30,8 @@ class AffectationController extends AbstractController
             $events[] = [
                 'id' => $affectation->getId(),
                 'title' => $affectation->getEmploye()->getNom() . ' - ' . $affectation->getChantier()->getNom(),
-                'start' => $affectation->getDateDebut()->format('Y-m-d'),
-                'end' => $affectation->getDateFin()->format('Y-m-d'),
+                'start' => $affectation->getDateAffectationDebut()->format('Y-m-d'),
+                'end' => $affectation->getDateAffectationFin()->format('Y-m-d'),
             ];
         }
 
@@ -45,7 +45,7 @@ class AffectationController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
 
-        if (!isset($data['date']) || !strtotime($data['date'])) {
+        if (!isset($data['date']) || !\DateTime::createFromFormat('Y-m-d', $data['date'])) {
             return new JsonResponse(['status' => 'error', 'message' => 'Date invalide'], 400);
         }
         $affectation->setDateAffectationDebut(new \DateTime($data['date']));

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - TeamBuild{% endblock %}
+
+{% block body %}
+<div class="container">
+    <button onclick="window.location.href='{{ path('app_login') }}'" class="login-button">Se connecter</button>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: url("{{ asset('images/background.png') }}") no-repeat center center/cover;
+        margin: 0;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .login-button {
+        padding: 15px 30px;
+        font-size: 18px;
+        background: #E76F51;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-button:hover {
+        background: #D36145;
+    }
+</style>
+{% endblock %}

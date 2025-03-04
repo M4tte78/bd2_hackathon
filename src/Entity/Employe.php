@@ -1,9 +1,11 @@
-<?php
+<?php 
 
 namespace App\Entity;
 
 use App\Repository\EmployeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: EmployeRepository::class)]
 class Employe
@@ -22,17 +24,20 @@ class Employe
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $password = null;
-
     #[ORM\Column(length: 20)]
     private ?string $telephone = null;
 
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $poste = null;
+    #[ORM\ManyToMany(targetEntity: Competences::class)]
+    #[ORM\JoinTable(name: "employe_competences")]
+    private Collection $competences;
+
+    public function __construct()
+    {
+        $this->competences = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,18 +80,6 @@ class Employe
         return $this;
     }
 
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): static
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
     public function getTelephone(): ?string
     {
         return $this->telephone;
@@ -111,15 +104,29 @@ class Employe
         return $this;
     }
 
-    public function getPoste(): ?string
+    public function getCompetences(): Collection
     {
-        return $this->poste;
+        return $this->competences;
     }
 
-    public function setPoste(string $poste): static
+    public function addCompetence(Competences $competence): static
     {
-        $this->poste = $poste;
+        if (!$this->competences->contains($competence)) {
+            $this->competences[] = $competence;
+        }
 
         return $this;
+    }
+
+    public function removeCompetence(Competences $competence): static
+    {
+        $this->competences->removeElement($competence);
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->prenom . ' ' . $this->nom;
     }
 }

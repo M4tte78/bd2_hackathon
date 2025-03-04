@@ -24,7 +24,7 @@ class EmployeCrudController extends AbstractCrudController
             EmailField::new('email', 'Email'),
             TelephoneField::new('telephone', 'Téléphone'),
             TextField::new('adresse', 'Adresse'),
-            AssociationField::new('competences', 'Compétences'),
+            AssociationField::new('competences', 'Métier'),
         ];
     }
 }

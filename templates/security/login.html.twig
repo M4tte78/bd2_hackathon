@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - TeamBuild{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="left">
+        <h1>Bienvenue sur <strong>TeamBuild</strong></h1>
+    </div>
+    <div class="right">
+        <img src="{{ asset('bd2_hackathon/assets/images/logo.png') }}" alt="ÉDIFIS PRO" class="logo">
+        <h2>Connexion</h2>
+        <form method="post" action="{{ path('app_login') }}">
+            <input type="email" name="_username" placeholder="Email" required>
+            <input type="password" name="_password" placeholder="Mot de passe" required>
+            <button type="submit">connexion</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: url("{{ asset('bd2_hackathon/assets/images/background.png') }}") no-repeat center center/cover;
+        margin: 0;
+    }
+
+    .container {
+        display: flex;
+        width: 800px;
+        height: 400px;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .left {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        font-weight: bold;
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    .right {
+        flex: 1;
+        background: #AFC3D4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .right .logo {
+        width: 100px;
+        margin-bottom: 10px;
+    }
+
+    .right h2 {
+        color: #1D3557;
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 250px;
+    }
+
+    input {
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        padding: 10px;
+        background: #E76F51;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background: #D36145;
+    }
+</style>
+{% endblock %}

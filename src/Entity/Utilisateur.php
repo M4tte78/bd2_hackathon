@@ -66,6 +66,6 @@ class Utilisateur
 
     public function getRoles(): array
     {
-        return [$this->role->getRole()];
+        return $this->role ? [$this->role->getRole()] : ['ROLE_USER'];
     }
 }

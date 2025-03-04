@@ -8,11 +8,12 @@
         <h1>Bienvenue sur <strong>TeamBuild</strong></h1>
     </div>
     <div class="right">
-        <img src="{{ asset('bd2_hackathon/assets/images/logo.png') }}" alt="ÉDIFIS PRO" class="logo">
+        <img src="{{ asset('../images/logo.png') }}" alt="ÉDIFIS PRO" class="logo">
         <h2>Connexion</h2>
         <form method="post" action="{{ path('app_login') }}">
             <input type="email" name="_username" placeholder="Email" required>
             <input type="password" name="_password" placeholder="Mot de passe" required>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             <button type="submit">connexion</button>
         </form>
     </div>
@@ -25,8 +26,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        background: url("{{ asset('bd2_hackathon/assets/images/background.png') }}") no-repeat center center/cover;
+        height: 100vh;        
         margin: 0;
     }
 
@@ -47,7 +47,9 @@
         align-items: center;
         font-size: 24px;
         font-weight: bold;
-        background: rgba(255, 255, 255, 0.8);
+        background-image: url("{{ asset('../images/background.png') }}");
+        background-size: cover;
+        background-position: center;
     }
 
     .right {

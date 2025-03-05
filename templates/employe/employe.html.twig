@@ -1,0 +1,51 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block head_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/employe.css') }}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="employee-container">
+        <div class="employee-header">
+            <h1 class="dashboard-title">Liste des employés</h1>
+            <div class="employee-actions">
+                <input type="text" id="search-employee" class="search-input" placeholder="Chercher un employé...">
+                <button class="filter-btn"><i class="fas fa-filter"></i></button>
+                <a href="{{ path('admin', { 'crudAction': 'new', 'crudControllerFqcn': 'App\\Controller\\Admin\\EmployeCrudController' }) }}" class="btn btn-add">+ Nouvel employé</a>
+            </div>
+        </div>
+
+        <table class="employee-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Métier</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Adresse</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employe in employes %}
+                <tr>
+                    <td>{{ employe.id }}</td>
+                    <td>{{ employe.competences.nom }}</td>
+                    <td>{{ employe.nom }}</td>
+                    <td>{{ employe.prenom }}</td>
+                    <td>{{ employe.email }}</td>
+                    <td>{{ employe.telephone }}</td>
+                    <td>{{ employe.adresse }}</td>
+                    <td>
+                        <a href="{{ path('admin', { 'crudAction': 'edit', 'crudControllerFqcn': 'App\\Controller\\Admin\\EmployeCrudController', 'entityId': employe.id }) }}" class="btn btn-edit">Modifier</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

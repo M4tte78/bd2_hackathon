@@ -31,20 +31,24 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-        ->setTitle('TEAMBUILD');
+        ->setTitle('TEAMBUILD')
+        ->renderContentMaximized() // Pleine largeur
+        ->disableDarkMode(); // Désactive le mode sombre
     }
 
     public function configureMenuItems(): iterable
     {
         return [
-            yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
-            yield MenuItem::linkToCrud('Rôles', 'fas fa-circle-check', Role::class),
-            yield MenuItem::linkToCrud('Statuts', 'fas fa-spinner', Statut::class),
-            yield MenuItem::linkToCrud('Métiers', 'fas fa-hammer', Competences::class),
-            yield MenuItem::linkToCrud('Ouvriers', 'fas fa-users', Employe::class),
-            yield MenuItem::linkToCrud('Chantiers', 'fas fa-helmet-safety', Chantier::class),
-            yield MenuItem::linkToCrud('Affectations', 'fas fa-person-digging', Affectation::class),
-            yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', Utilisateur::class)
+            MenuItem::section('Navigation'),
+            MenuItem::linkToDashboard('Accueil', 'fas fa-home'),
+            MenuItem::linkToCrud('Rôles', 'fas fa-user-tag', Role::class),
+            MenuItem::linkToCrud('Métiers', 'fas fa-tools', Competences::class),
+            MenuItem::linkToCrud('Employés', 'fas fa-users', Employe::class),
+            MenuItem::linkToCrud('Chantiers', 'fas fa-building', Chantier::class),
+            MenuItem::linkToCrud('Affectations', 'fas fa-calendar-check', Affectation::class),
+            MenuItem::section('Gestion Utilisateurs'),
+            MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', Utilisateur::class),
+            MenuItem::linkToLogout('Déconnexion', 'fas fa-sign-out-alt'),
         ];
     }
 }

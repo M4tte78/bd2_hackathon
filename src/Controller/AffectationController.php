@@ -31,7 +31,7 @@ class AffectationController extends AbstractController
                 'id' => $affectation->getId(),
                 'title' => $affectation->getEmploye()->getNom() . ' - ' . $affectation->getChantier()->getNom(),
                 'start' => $affectation->getDateAffectationDebut()->format('Y-m-d'),
-                'end' => $affectation->getDateAffectationFin()->format('Y-m-d'),
+                'end' => $affectation->getDateAffectationFin()->modify('+1 day')->format('Y-m-d'),
             ];
         }
 

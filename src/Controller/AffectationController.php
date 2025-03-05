@@ -24,20 +24,25 @@ class AffectationController extends AbstractController
     public function calendar(AffectationRepository $affectationRepository): Response
     {
         $affectations = $affectationRepository->findAll();
-        $events = [];
+    $events = [];
 
-        foreach ($affectations as $affectation) {
-            $events[] = [
-                'id' => $affectation->getId(),
-                'title' => $affectation->getEmploye()->getNom() . ' - ' . $affectation->getChantier()->getNom(),
-                'start' => $affectation->getDateAffectationDebut()->format('Y-m-d'),
-                'end' => $affectation->getDateAffectationFin()->modify('+1 day')->format('Y-m-d'),
-            ];
-        }
+    foreach ($affectations as $affectation) {
+        $events[] = [
+            'id' => $affectation->getId(),
+            'title' => $affectation->getEmploye()->getNom() . ' - ' . $affectation->getChantier()->getNom(),
+            'start' => $affectation->getDateAffectationDebut()->format('Y-m-d'),
+            'end' => $affectation->getDateAffectationFin()->modify('+1 day')->format('Y-m-d'),
+            'extendedProps' => [
+                'employeNom' => $affectation->getEmploye()->getNom(),
+                'employePrenom' => $affectation->getEmploye()->getPrenom(),
+                'chantierNom' => $affectation->getChantier()->getNom()
+            ]
+        ];
+    }
 
-        return $this->render('affectation/calendar.html.twig', [
-            'affectations' => json_encode($events),
-        ]);
+    return $this->render('affectation/calendar.html.twig', [
+        'affectations' => json_encode($events),
+    ]);
     }
 
     #[Route('/affectation/{id}/update-date', name: 'affectation_update_date', methods: ['POST'])]

@@ -9,6 +9,7 @@ use App\Entity\Employe;
 use App\Entity\Statut;
 use App\Entity\Role;
 use App\Entity\Utilisateur;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,8 +33,14 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
         ->setTitle('TEAMBUILD')
-        ->renderContentMaximized() // Pleine largeur
-        ->disableDarkMode(); // Désactive le mode sombre
+        ->renderContentMaximized()
+        ->disableDarkMode();
+    }
+
+    public function configureAssets(): Assets
+    {
+        return parent::configureAssets()
+            ->addCssFile('css/navbarDashboard.css');
     }
 
     public function configureMenuItems(): iterable

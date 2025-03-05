@@ -1,0 +1,20 @@
+.sidebar {
+    background-color: #B3CBD8 !important;
+}
+
+.sidebar-menu a {
+    color: #1E3650 !important;
+    font-weight: bold;
+}
+
+.sidebar-menu .active a {
+    color: #1E3650 !important;
+}
+
+.user-menu a {
+    color: #1E3650 !important;
+}
+
+.content-header-title {
+    color: #1E3650 !important;
+}

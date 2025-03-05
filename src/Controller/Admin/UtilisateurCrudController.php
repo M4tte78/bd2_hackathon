@@ -40,7 +40,7 @@ class UtilisateurCrudController extends AbstractCrudController
         ];
     }
 
-    public function addEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    public function PersistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         if (!$entityInstance instanceof Utilisateur) {
             return;
@@ -51,7 +51,7 @@ class UtilisateurCrudController extends AbstractCrudController
             $entityInstance->setPassword($hashedPassword);
         }
 
-        parent::addEntity($entityManager, $entityInstance);
+        parent::PersistEntity($entityManager, $entityInstance);
     }
 
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void

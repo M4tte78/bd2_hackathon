@@ -1,0 +1,31 @@
+:root {
+    --primary-color: #1E3A5F; /* Bleu foncé */
+    --secondary-color: #E06C4E; /* Orange */
+    --background-light: #F5F5F5;
+    --text-dark: #2C3E50;
+}
+
+.dashboard-container {
+    text-align: center;
+    background: var(--background-light);
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.dashboard-title {
+    color: var(--primary-color);
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.dashboard-text {
+    color: var(--text-dark);
+}
+
+.btn-primary {
+    background: var(--secondary-color);
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+}

@@ -5,10 +5,10 @@
 {% block body %}
 <div class="container">
     <div class="left">
-        <h1>Bienvenue sur <strong>TeamBuild</strong></h1>
+        <h1 class="h1">Bienvenue <br> sur <br>TeamBuild</h1>
     </div>
     <div class="right">
-        <img src="{{ asset('../images/logo.png') }}" alt="ÉDIFIS PRO" class="logo">
+        <img src="{{ asset('../images/LogoDetail.png') }}" alt="ÉDIFIS PRO" class="logo">
         <h2>Connexion</h2>
         <form method="post" action="{{ path('app_login') }}">
             <input type="email" name="_username" placeholder="Email" required>
@@ -21,84 +21,102 @@
 {% endblock %}
 
 {% block stylesheets %}
-<style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;        
-        margin: 0;
-    }
+    <style>
 
-    .container {
-        display: flex;
-        width: 800px;
-        height: 400px;
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif ;
+        }
 
-    .left {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 24px;
-        font-weight: bold;
-        background-image: url("{{ asset('../images/background.png') }}");
-        background-size: cover;
-        background-position: center;
-    }
+        html, body {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
 
-    .right {
-        flex: 1;
-        background: #AFC3D4;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+        }
 
-    .right .logo {
-        width: 100px;
-        margin-bottom: 10px;
-    }
+        .h1{
+            justify-content: center;
+            font-weight: 100 !important;
+            color: #1e3a5f;
+            font-size: 5rem;
+            padding-left: 40px;
+        }
 
-    .right h2 {
-        color: #1D3557;
-        font-size: 22px;
-        margin-bottom: 20px;
-    }
+        .left {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("{{ asset('images/background.png') }}");
+            background-size: cover;
+            background-position: center;
+            padding: 40px;
+            padding-right: 350px;
+        }
 
-    form {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        max-width: 250px;
-    }
+        .right {
+            flex: 1;
+            background: #AFC3D4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+        }
 
-    input {
-        padding: 10px;
-        margin: 5px 0;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
+        .right .logo {
+            width: 250px;
+            margin-bottom: 20px;
+        }
 
-    button {
-        padding: 10px;
-        background: #E76F51;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 10px;
-    }
+        .right h2 {
+            color: #1E3A5F;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 2px solid #1e3a5f;
+            padding-bottom: 5px;
+            width: 100%;
+            max-width: 250px;
+        }
 
-    button:hover {
-        background: #D36145;
-    }
-</style>
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        input {
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px;
+            background: #E76F51;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #D36145;
+        }
+
+    </style>
 {% endblock %}

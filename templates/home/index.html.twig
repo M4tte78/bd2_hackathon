@@ -4,6 +4,9 @@
 
 {% block body %}
 <div class="container">
+    <img src="{{ asset('../images/Logo.png') }}" alt="ÉDIFIS PRO" class="logo">
+
+    <h1> TEAMBUILD </h1>
     <button onclick="window.location.href='{{ path('app_login') }}'" class="login-button">Se connecter</button>
 </div>
 {% endblock %}
@@ -21,10 +24,23 @@
 
     .container {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
         width: 100%;
         height: 100vh;
+        gap: 50px;
+    }
+
+    .logo {
+        width: 200px;
+    }
+
+    h1 {
+        font-size: 60px;
+        color: #1e3a5f;
+        font-weight: bold;
+        margin: 0;
+        font-family: 'Inter', sans-serif;
     }
 
     .login-button {
@@ -41,5 +57,6 @@
     .login-button:hover {
         background: #D36145;
     }
+
 </style>
 {% endblock %}

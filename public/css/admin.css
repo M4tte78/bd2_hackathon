@@ -1,10 +1,11 @@
 :root {
-    --primary-color: #1E3A5F; /* Bleu foncé */
-    --secondary-color: #E06C4E; /* Orange */
+    --primary-color: #1E3A5F;
+    --secondary-color: #E55812; /* Orange */
     --background-light: #F5F5F5;
     --text-dark: #2C3E50;
 }
 
+/* Centrage global */
 .dashboard-container {
     text-align: center;
     background: var(--background-light);
@@ -12,20 +13,74 @@
     border-radius: 10px;
 }
 
+/* Titre et texte */
 .dashboard-title {
     color: var(--primary-color);
-    font-size: 28px;
+    font-size: 32px; /* Augmenté */
     font-weight: bold;
 }
 
 .dashboard-text {
     color: var(--text-dark);
+    font-size: 18px;
 }
 
+/* Conteneur des stats */
+.dashboard-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Augmenté pour plus d’espace */
+    margin-top: 30px;
+}
+
+/* Cartes */
+.stat-card {
+    background: #E5E5E5;
+    padding: 40px 50px; /* Plus d’espace */
+    border-radius: 12px;
+    width: 250px; /* Ajusté pour correspondre */
+    height: 120px; /* Permet de garder un bon alignement */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre et chiffres dans les cartes */
+.stat-title {
+    font-size: 22px; /* Ajusté */
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-number {
+    font-size: 32px; /* Augmenté pour plus de visibilité */
+    font-weight: bold;
+}
+
+/* Bouton */
 .btn-primary {
-    background: var(--secondary-color);
-    border: none;
-    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #D46A50;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
     font-size: 18px;
-    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 40px auto;
+    width: fit-content;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease-in-out;
+}
+
+.btn-primary i {
+    margin-right: 10px;
+}
+
+.btn-primary:hover {
+    background: #C95A40;
 }

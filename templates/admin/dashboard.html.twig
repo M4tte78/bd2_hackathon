@@ -11,6 +11,22 @@
     <div class="dashboard-container">
         <h1 class="dashboard-title">Bienvenue sur TEAMBUILD</h1>
         <p class="dashboard-text">Utilisez le menu pour naviguer.</p>
+
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <span class="stat-title">En cours</span>
+                <span class="stat-number">{{ chantiers_en_cours }}</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-title">En attente</span>
+                <span class="stat-number">{{ chantiers_en_attente }}</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-title">Employés Actifs</span>
+                <span class="stat-number">{{ employes_actifs }}</span>
+            </div>
+        </div>
+
         <a href="{{ calendar_url }}" class="btn btn-primary">Accéder au calendrier des affectations</a>
     </div>
 {% endblock %}

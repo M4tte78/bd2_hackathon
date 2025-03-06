@@ -9,8 +9,9 @@ class EmployeControllerTest extends WebTestCase
     public function testEmployePageIsUp()
     {
         $client = static::createClient();
-        $client->request('GET', '/employe');
-
+        $crawler = $client->request('GET', '/employe');
+    
+        dump($crawler->filter('h1')->text()); // Affiche le contenu du <h1>
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Liste des employés');
     }

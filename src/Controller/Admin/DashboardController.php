@@ -46,15 +46,17 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         return [
-            MenuItem::section('Navigation'),
             MenuItem::linkToDashboard('Accueil', 'fas fa-home'),
-            MenuItem::linkToCrud('Rôles', 'fas fa-user-tag', Role::class),
-            MenuItem::linkToCrud('Métiers', 'fas fa-tools', Competences::class),
+            MenuItem::section('Navigation'),
             MenuItem::linkToCrud('Employés', 'fas fa-users', Employe::class),
             MenuItem::linkToCrud('Chantiers', 'fas fa-building', Chantier::class),
             MenuItem::linkToCrud('Affectations', 'fas fa-calendar-check', Affectation::class),
             MenuItem::section('Gestion Utilisateurs'),
             MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', Utilisateur::class),
+            MenuItem::section('Paramètres'),
+            MenuItem::linkToCrud('Rôles', 'fas fa-user-tag', Role::class),
+            MenuItem::linkToCrud('Métiers', 'fas fa-tools', Competences::class),
+            MenuItem::linkToCrud('Status', 'fas fa-clock', Statut::class),
             MenuItem::linkToLogout('Déconnexion', 'fas fa-sign-out-alt'),
         ];
     }

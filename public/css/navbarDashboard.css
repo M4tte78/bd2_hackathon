@@ -1,20 +1,46 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+
+}
+
 .sidebar {
-    background-color: #B3CBD8 !important;
+    background-color: #AEC6CF !important;
 }
 
 .sidebar-menu a {
-    color: #1E3650 !important;
+    color: #1E3A5F !important;
     font-weight: bold;
 }
 
 .sidebar-menu .active a {
-    color: #1E3650 !important;
+    color: #1E3A5F !important;
 }
 
 .user-menu a {
-    color: #1E3650 !important;
+    color: #1E3A5F !important;
 }
 
-.content-header-title {
-    color: #1E3650 !important;
+.logo-custom {
+    display: flex !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    font-weight: bold;
 }
+
+.PhotoLogo{
+    height: 70px;
+
+}
+
+.sidebar-menu .active a {
+    background-color: #ff0808 !important;
+    color: white !important;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#main-menu .menu .menu-item.active:not(.expanded) .menu-icon, #main-menu .menu .menu-item.active:not(.expanded) a{
+    color: #0d3a71 !important;
+}
+

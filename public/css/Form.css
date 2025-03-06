@@ -1,0 +1,8 @@
+.btn-primary:not(:disabled):not(.disabled):not(.btn-link):not(.btn-danger):hover {
+    background-color: #E55812 !important;
+
+}
+
+.btn-primary{
+    background-color: #E55812 !important;
+}

@@ -1,8 +1,13 @@
 <?php
+
 namespace App\Controller\Admin;
 
 use App\Entity\Utilisateur;
 use Doctrine\ORM\EntityManagerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -22,15 +27,30 @@ class UtilisateurCrudController extends AbstractCrudController
         return Utilisateur::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPageTitle(Crud::PAGE_INDEX, 'Liste des utilisateurs')
+            ->setPageTitle(Crud::PAGE_NEW, 'Créer un nouvel utilisateur')
+            ->setPageTitle(Crud::PAGE_EDIT, 'Modifier un utilisateur')
+            ->setPageTitle(Crud::PAGE_DETAIL, 'Détails de l\'utilisateur')
+            ->setEntityLabelInSingular('Utilisateur')
+            ->setEntityLabelInPlural('Utilisateurs')
+            ->setDefaultSort(['email' => 'ASC']);
+    }
+
+    public function configureAssets(Assets $assets): Assets
+    {
+        return $assets->addCssFile('css/Form.css');
+    }
+
     public function configureFields(string $pageName): iterable
     {
         $passwordField = TextField::new('password', 'Mot de passe')
-            -> onlyOnForms()
-            ->setRequired($pageName === 'new')
+            ->onlyOnForms()
+            ->setRequired($pageName === Crud::PAGE_NEW)
             ->setFormTypeOptions([
-                'attr' => [
-                    'autocomplete' => 'new-password'
-                ]
+                'attr' => ['autocomplete' => 'new-password']
             ]);
 
         return [
@@ -40,7 +60,22 @@ class UtilisateurCrudController extends AbstractCrudController
         ];
     }
 
-    public function PersistEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->update(Crud::PAGE_INDEX, Action::NEW, fn (Action $action) =>
+            $action->setLabel('Créer un utilisateur'))
+            ->update(Crud::PAGE_EDIT, Action::SAVE_AND_RETURN, fn (Action $action) =>
+            $action->setLabel('Sauvegarder et retourner'))
+            ->update(Crud::PAGE_EDIT, Action::SAVE_AND_CONTINUE, fn (Action $action) =>
+            $action->setLabel('Sauvegarder et continuer'))
+            ->update(Crud::PAGE_INDEX, Action::DELETE, fn (Action $action) =>
+            $action->setLabel('Supprimer cet utilisateur'))
+            ->update(Crud::PAGE_NEW, Action::SAVE_AND_RETURN, fn (Action $action) =>
+            $action->setLabel('Créer'));
+    }
+
+    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         if (!$entityInstance instanceof Utilisateur) {
             return;
@@ -51,7 +86,7 @@ class UtilisateurCrudController extends AbstractCrudController
             $entityInstance->setPassword($hashedPassword);
         }
 
-        parent::PersistEntity($entityManager, $entityInstance);
+        parent::persistEntity($entityManager, $entityInstance);
     }
 
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
@@ -60,7 +95,9 @@ class UtilisateurCrudController extends AbstractCrudController
             return;
         }
 
-        if ($entityInstance->getPassword()) {
+        $existingUser = $entityManager->getRepository(Utilisateur::class)->find($entityInstance->getId());
+
+        if ($entityInstance->getPassword() && $existingUser->getPassword() !== $entityInstance->getPassword()) {
             $hashedPassword = $this->passwordHasher->hashPassword($entityInstance, $entityInstance->getPassword());
             $entityInstance->setPassword($hashedPassword);
         }
@@ -68,4 +105,3 @@ class UtilisateurCrudController extends AbstractCrudController
         parent::updateEntity($entityManager, $entityInstance);
     }
 }
-

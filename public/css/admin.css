@@ -1,22 +1,26 @@
 :root {
     --primary-color: #1E3A5F;
-    --secondary-color: #E55812; /* Orange */
+    --secondary-color: #E55812;
     --background-light: #F5F5F5;
     --text-dark: #2C3E50;
 }
 
-/* Centrage global */
-.dashboard-container {
-    text-align: center;
-    background: var(--background-light);
-    padding: 50px;
-    border-radius: 10px;
+*{
+    font-family: 'Inter', sans-serif;
 }
 
-/* Titre et texte */
+body{
+    background: var(--background-light);
+}
+
+.dashboard-container {
+    text-align: center;
+    padding: 50px;
+}
+
 .dashboard-title {
     color: var(--primary-color);
-    font-size: 32px; /* Augmenté */
+    font-size: 32px;
     font-weight: bold;
 }
 
@@ -25,21 +29,19 @@
     font-size: 18px;
 }
 
-/* Conteneur des stats */
 .dashboard-stats {
     display: flex;
     justify-content: center;
-    gap: 30px; /* Augmenté pour plus d’espace */
+    gap: 30px;
     margin-top: 30px;
 }
 
-/* Cartes */
 .stat-card {
     background: #E5E5E5;
-    padding: 40px 50px; /* Plus d’espace */
+    padding: 40px 50px;
     border-radius: 12px;
-    width: 250px; /* Ajusté pour correspondre */
-    height: 120px; /* Permet de garder un bon alignement */
+    width: 250px;
+    height: 120px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -47,24 +49,21 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Titre et chiffres dans les cartes */
 .stat-title {
-    font-size: 22px; /* Ajusté */
-    font-weight: bold;
+    font-size: 22px;
     margin-bottom: 5px;
 }
 
 .stat-number {
-    font-size: 32px; /* Augmenté pour plus de visibilité */
+    font-size: 32px;
     font-weight: bold;
 }
 
-/* Bouton */
-.btn-primary {
+.btn-access {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #D46A50;
+    background: var(--secondary-color);
     color: white;
     padding: 15px 25px;
     border-radius: 10px;
@@ -77,10 +76,11 @@
     transition: background 0.3s ease-in-out;
 }
 
-.btn-primary i {
+.btn-access i {
     margin-right: 10px;
 }
 
-.btn-primary:hover {
-    background: #C95A40;
+.btn-access:hover {
+    background: #E06C4EFF;
+    color: white;
 }

@@ -53,13 +53,15 @@ class DashboardController extends AbstractDashboardController
         ]);
     }
 
+
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('TEAMBUILD')
+            ->setTitle('<img src="/images/logo.png" alt="Logo" class="PhotoLogo""> TEAMBUILD')
             ->renderContentMaximized()
             ->disableDarkMode();
     }
+
 
     public function configureAssets(): Assets
     {

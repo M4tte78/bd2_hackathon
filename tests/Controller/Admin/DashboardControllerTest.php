@@ -7,6 +7,18 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DashboardControllerTest extends WebTestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+        echo "\n==== Démarrage des tests unitaires du Dashboard ====\n";
+    }
+
+    public function tearDown(): void
+    {
+        echo ".";
+        parent::tearDown();
+    }
+
     public function testDashboardAccessForAdmin()
     {
         $client = static::createClient();
@@ -18,6 +30,8 @@ class DashboardControllerTest extends WebTestCase
         $client->request('GET', '/admin');
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'TEAMBUILD');
+        
+        echo "\n✓ Test d'accès au dashboard réussi";
     }
 
     private function getAdminUser()
@@ -31,5 +45,13 @@ class DashboardControllerTest extends WebTestCase
         }
 
         return $user;
+    }
+    
+    /**
+     * @afterClass
+     */
+    public static function tearDownAfterClass(): void
+    {
+        echo "\n\n==== Tests unitaires du Dashboard terminés avec succès! ====\n\n";
     }
 }
